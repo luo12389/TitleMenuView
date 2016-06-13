@@ -9,8 +9,11 @@
 WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 ```
 ####风格样式
-TitleMenuStylePlayDefault
+TitleMenuStylePlayDefault  TitleMenuStylePlayLine  TitleMenuStylePlayPlayGround
+
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/default.gif)
+![](https://github.com/luo12389/TitleMenuView/blob/master/gif/line.gif)
+![](https://github.com/luo12389/TitleMenuView/blob/master/gif/playground.gif)
 ####可设置的属性
 ```
 //按钮字体的默认颜色
