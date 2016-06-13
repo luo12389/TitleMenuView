@@ -2,15 +2,12 @@
   仿新闻app的菜单滚动条，适合新手学习，全程小白级代码。
 ###使用方法
   把压缩文件中的TitleMenuView.h和TitleMenuView.m两个文件放入项目文件夹使用
-  
 ####初始化方法
 ``` 
 -(instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array 
 WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 ```
 ####风格样式
-  TitleMenuStylePlayDefault                 TitleMenuStylePlayLine                  TitleMenuStylePlayPlayGround
-  
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/default.gif)
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/line.gif)
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/playground.gif)
@@ -25,7 +22,7 @@ WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font 
 //滚动条的颜色
 @property (nonatomic, strong) UIColor *sliderColor;
 ```
-####使用发法
+####使用方法
 ```
 //数组如果不是这样的格式，可能会造成标题不显示或报错
 NSArray *array = @[@{@"新闻":[[FirstViewController alloc]init]}];
