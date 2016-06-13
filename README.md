@@ -9,8 +9,8 @@
 WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 ```
 ####风格样式
-TitleMenuStylePlayDefault  TitleMenuStylePlayLine  TitleMenuStylePlayPlayGround
-
+  TitleMenuStylePlayDefault                 TitleMenuStylePlayLine                  TitleMenuStylePlayPlayGround
+  
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/default.gif)
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/line.gif)
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/playground.gif)
