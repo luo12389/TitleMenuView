@@ -26,3 +26,5 @@ NSArray *array = @[@{@"新闻":[[FirstViewController alloc]init]}];
 TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, mainWidth, mainHeight-20) 
 WithViewControllers:array WithStyle:TitleMenuStyleDefault WithTitleFont:15 AndTitleInterval:20];
 ```
+####风格样式
+
