@@ -27,4 +27,4 @@ TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64,
 WithViewControllers:array WithStyle:TitleMenuStyleDefault WithTitleFont:15 AndTitleInterval:20];
 ```
 ####风格样式
-https://github.com/luo12389/TitleMenuView/raw/master/gif/1.gif
+https://github.com/luo12389/TitleMenuView/tree/master/gif
