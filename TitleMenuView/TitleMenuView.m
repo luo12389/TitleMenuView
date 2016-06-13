@@ -162,7 +162,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    int pageNum = vcScrollView.contentOffset.x/mainWidth;
+    NSInteger pageNum = vcScrollView.contentOffset.x/mainWidth;
     
     for (UIButton *btn in buttonsArray)
     {
@@ -180,7 +180,7 @@
     [self offset:pageNum];
 }
 
-- (void)offset:(int)page;
+- (void)offset:(NSInteger)page;
 {
     UIButton *btn = buttonsArray[page];
     
@@ -219,6 +219,8 @@
     }
     
     [vcScrollView setContentOffset:CGPointMake(mainWidth*btnSender.tag, 0) animated:YES];
+    
+    [self offset:btnSender.tag];
 }
 
 - (void)setTitleMenuBackGroundColor:(UIColor *)titleMenuBackGroundColor
