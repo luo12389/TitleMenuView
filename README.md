@@ -8,6 +8,9 @@
 -(instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array 
 WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 ```
+####风格样式
+TitleMenuStylePlayDefault
+![](https://github.com/luo12389/TitleMenuView/blob/master/gif/default.gif)
 ####可设置的属性
 ```
 //按钮字体的默认颜色
@@ -26,5 +29,4 @@ NSArray *array = @[@{@"新闻":[[FirstViewController alloc]init]}];
 TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, mainWidth, mainHeight-20) 
 WithViewControllers:array WithStyle:TitleMenuStyleDefault WithTitleFont:15 AndTitleInterval:20];
 ```
-####风格样式
-![](https://github.com/luo12389/TitleMenuView/blob/master/gif/1.gif)
+
