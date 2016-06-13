@@ -11,6 +11,7 @@
 #define mainWidth    [UIScreen mainScreen].bounds.size.width
 #define mainHeight   [UIScreen mainScreen].bounds.size.height
 @interface TitleMenuView : UIView<UIScrollViewDelegate>
+
 {
     UIScrollView *mainScrollView;
     UIScrollView *vcScrollView;
@@ -40,17 +41,6 @@ typedef NS_ENUM(NSInteger, TitleMenuScrollViewStyle)
 //滚动条的颜色
 @property (nonatomic, strong) UIColor *sliderColor;
 
-
-
-
 - (instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array WithStyle:(TitleMenuScrollViewStyle)titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
-
-
-
-
-
-
-
-
 
 @end
