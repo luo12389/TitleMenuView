@@ -1,4 +1,5 @@
 # TitleMenuView
   仿新闻app的菜单滚动条，适合新手学习，全程小白级代码。
   
-###初始化
+###初始化方法
+-(instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array WithStyle:(TitleMenuScrollViewStyle)titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
