@@ -5,8 +5,8 @@
   
 ####初始化方法
 ``` 
--(instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array WithStyle:(TitleMenuScrollViewStyle)
-titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
+-(instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array 
+WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 ```
 ####可设置的属性
 ```
@@ -18,4 +18,10 @@ titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 @property (nonatomic, strong) UIColor *titleMenuBackGroundColor;
 //滚动条的颜色
 @property (nonatomic, strong) UIColor *sliderColor;
+```
+####使用发法
+```
+NSArray *array = @[@{@"新闻":[[FirstViewController alloc]init]}];
+TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, mainWidth, mainHeight-20) 
+WithViewControllers:array WithStyle:TitleMenuStyleDefault WithTitleFont:15 AndTitleInterval:20];
 ```
