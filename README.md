@@ -31,4 +31,5 @@ WithViewControllers:array WithStyle:TitleMenuStyleDefault WithTitleFont:15 AndTi
 ```
 提示:如果有navigationcontroller,要加上self.automaticallyAdjustsScrollViewInsets = NO(去掉头部留白);
 
-如果有任何问题，可以联系：Email:<1224631767@qq.com>
+如果有任何问题，欢迎联系：Email:<1224631767@qq.com>
+
