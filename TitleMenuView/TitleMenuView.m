@@ -46,6 +46,8 @@
     
     [self addSubview:mainScrollView];
     
+    CGFloat contentSizeX = 0;
+    
     buttonsArray = [NSMutableArray array];
     
     for (int i = 0; i < vcsArray.count; i++)
@@ -61,6 +63,8 @@
         NSString *title = [dic allKeys][0];
         
         btnWidth = titleFont*title.length+btnSpace/2;
+        
+        contentSizeX += btnWidth;
         
         if (i == 0)
         {
@@ -114,7 +118,7 @@
         [mainScrollView addSubview:btn];
     }
     
-    mainScrollView.contentSize = CGSizeMake((btnWidth+btnSpace)*vcsArray.count, 0);
+    mainScrollView.contentSize = CGSizeMake(contentSizeX+vcsArray.count*btnSpace, 0);
 }
 
 - (void)creatVCScrollView

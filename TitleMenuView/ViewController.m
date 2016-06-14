@@ -29,7 +29,7 @@
     
     NSArray *array = @[@{@"新闻":[[FirstViewController alloc]init]},@{@"娱乐":[[SecondViewController alloc]init]},@{@"体育":[[ThirdViewController alloc]init]},@{@"军事":[[FourthViewController alloc]init]},@{@"科技":[[FifthViewController alloc]init]},@{@"财经":[[SixthViewController alloc]init]},@{@"头条":[[SevenViewController alloc]init]},@{@"政治":[[EightViewController alloc]init]},@{@"你们":[[NineThViewController alloc]init]},@{@"没有":[[TenViewController alloc]init]}];
     
-    TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, mainWidth, mainHeight-20) WithViewControllers:array WithStyle:TitleMenuStylePlayGround WithTitleFont:15 AndTitleInterval:20];
+    TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, mainWidth, mainHeight-20) WithViewControllers:array WithStyle:TitleMenuStyleLine WithTitleFont:15 AndTitleInterval:20];
     
     titleMenu.btnSelectedColor = [UIColor darkGrayColor];
 
