@@ -38,7 +38,7 @@
 
 -  (void)creatTitleMenuScrollView
 {
-    mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, mainWidth, 30)];
+    mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, MAINWIDTH, 30)];
     
     mainScrollView.showsVerticalScrollIndicator = NO;
     
@@ -64,19 +64,27 @@
         
         btnWidth = titleFont*title.length+btnSpace/2;
         
-        contentSizeX += btnWidth;
-        
-        if (i == 0)
+        if(self.viewStyle == TitleMenuStyleScreen)
         {
-            btn.frame = CGRectMake(btnSpace/2, 5, btnWidth, 20);
+            btnWidth = MAINWIDTH/vcsArray.count;
+            
+            btn.frame = CGRectMake(btnWidth*i, 5, btnWidth, 20);
         }
         else
         {
-            UIButton *button = buttonsArray[i-1];
+            contentSizeX += btnWidth;
             
-            btn.frame = CGRectMake(button.frame.origin.x+button.frame.size.width+btnSpace, 5, btnWidth, 20);
+            if (i == 0)
+            {
+                btn.frame = CGRectMake(btnSpace/2, 5, btnWidth, 20);
+            }
+            else
+            {
+                UIButton *button = buttonsArray[i-1];
+                
+                btn.frame = CGRectMake(button.frame.origin.x+button.frame.size.width+btnSpace, 5, btnWidth, 20);
+            }
         }
-        
         [btn  setTitle:title forState:UIControlStateNormal];
         
         [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -87,9 +95,9 @@
             
             btn.titleLabel.font = [UIFont systemFontOfSize:15.5];
             
-            if (self.viewStyle == TitleMenuStyleLine)
+            if (self.viewStyle == TitleMenuStyleLine || self.viewStyle == TitleMenuStyleScreen)
             {
-                btnSliderView = [[UIView alloc]initWithFrame:CGRectMake(btn.frame.origin.x, 28, 40, 2)];
+                btnSliderView = [[UIView alloc]initWithFrame:CGRectMake(btn.frame.origin.x, 28, btn.frame.size.width, 2)];
                 
                 [mainScrollView addSubview:btnSliderView];
                 
@@ -123,7 +131,7 @@
 
 - (void)creatVCScrollView
 {
-    vcScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, mainScrollView.frame.origin.y+mainScrollView.frame.size.height, mainWidth, mainHeight-94)];
+    vcScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, mainScrollView.frame.origin.y+mainScrollView.frame.size.height, MAINWIDTH, MAINHEIGHT-94)];
     
     [self addSubview:vcScrollView];
     
@@ -135,14 +143,14 @@
         
         UIViewController *vc = [dic valueForKey:[dic allKeys][0]];
         
-        vc.view.frame = CGRectMake(i*mainWidth, 0, mainWidth, vcScrollView.frame.size.height);
+        vc.view.frame = CGRectMake(i*MAINWIDTH, 0, MAINWIDTH, vcScrollView.frame.size.height);
         
         vc.view.backgroundColor = [UIColor grayColor];
         
         [vcScrollView addSubview:vc.view];
     }
     
-    vcScrollView.contentSize = CGSizeMake(mainWidth*vcsArray.count, 0);
+    vcScrollView.contentSize = CGSizeMake(MAINWIDTH*vcsArray.count, 0);
     
     vcScrollView.pagingEnabled = YES;
     
@@ -155,18 +163,23 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    float num = vcScrollView.contentOffset.x/mainWidth;
+    float num = vcScrollView.contentOffset.x/MAINWIDTH;
     
     CGRect frame = btnSliderView.frame;
     
     frame.origin.x =btnSpace*(num+0.5)+btnWidth*num;
+    
+    if(self.viewStyle == TitleMenuStyleScreen)
+    {
+        frame.origin.x = num*btnWidth;
+    }
     
     btnSliderView.frame = frame;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSInteger pageNum = vcScrollView.contentOffset.x/mainWidth;
+    NSInteger pageNum = vcScrollView.contentOffset.x/MAINWIDTH;
     
     for (UIButton *btn in buttonsArray)
     {
@@ -181,27 +194,30 @@
         }
     }
     
-    [self offset:pageNum];
+    if(self.viewStyle != TitleMenuStyleScreen)
+    {
+        [self offset:pageNum];
+    }
 }
 
 - (void)offset:(NSInteger)page;
 {
     UIButton *btn = buttonsArray[page];
-    
-    CGFloat offset = btn.center.x - mainWidth*0.5;
-    
+
+    CGFloat offset = btn.center.x - MAINWIDTH*0.5;
+
     if (offset < 0)
     {
         offset = 0;
     }
-    
-    CGFloat maxOffset = mainScrollView.contentSize.width - mainWidth;
-    
+
+    CGFloat maxOffset = mainScrollView.contentSize.width - MAINWIDTH;
+
     if (offset > maxOffset)
     {
         offset = maxOffset;
     }
-    
+
     [mainScrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
 }
 
@@ -222,9 +238,9 @@
         }
     }
     
-    [vcScrollView setContentOffset:CGPointMake(mainWidth*btnSender.tag, 0) animated:YES];
+    [vcScrollView setContentOffset:CGPointMake(MAINWIDTH*btnSender.tag, 0) animated:YES];
     
-    [self offset:btnSender.tag];
+    //    [self offset:btnSender.tag];
 }
 
 - (void)setTitleMenuBackGroundColor:(UIColor *)titleMenuBackGroundColor

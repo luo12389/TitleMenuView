@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define mainWidth    [UIScreen mainScreen].bounds.size.width
-#define mainHeight   [UIScreen mainScreen].bounds.size.height
+#define MAINWIDTH    [UIScreen mainScreen].bounds.size.width
+#define MAINHEIGHT   [UIScreen mainScreen].bounds.size.height
 @interface TitleMenuView : UIView<UIScrollViewDelegate>
 
 {
@@ -27,7 +27,8 @@ typedef NS_ENUM(NSInteger, TitleMenuScrollViewStyle)
 {
     TitleMenuStyleDefault,
     TitleMenuStylePlayGround,
-    TitleMenuStyleLine
+    TitleMenuStyleLine,
+    TitleMenuStyleScreen,
 };
 
 //样式
