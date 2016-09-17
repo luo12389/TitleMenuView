@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    state = 0;
+    
     self.view.backgroundColor = [UIColor lightGrayColor];
     
     UITextField *text = [[UITextField alloc]initWithFrame:CGRectMake(0, 20, 200, 20)];
@@ -25,6 +27,16 @@
     
     [self.view addSubview:text];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (state == 0)
+    {
+        NSLog(@"se");
+        
+        state = 1;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -27,18 +27,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *array = @[@{@"新闻":[[FirstViewController alloc]init]},
-                     @{@"娱乐":[[SecondViewController alloc]init]},
-                     @{@"体育":[[ThirdViewController alloc]init]},
-//                     @{@"军事":[[FourthViewController alloc]init]},
-//                     @{@"科技":[[FifthViewController alloc]init]},
-//                     @{@"财经":[[SixthViewController alloc]init]},
-//                     @{@"头条":[[SevenViewController alloc]init]},
-//                     @{@"政治":[[EightViewController alloc]init]},
-//                     @{@"你们":[[NineThViewController alloc]init]},
-                     @{@"没有":[[TenViewController alloc]init]}];
+    FirstViewController *first = [[FirstViewController alloc]init];
+    first.title = @"新闻";
     
-    TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, MAINWIDTH, MAINHEIGHT-20) WithViewControllers:array WithStyle:TitleMenuStyleScreen WithTitleFont:15 AndTitleInterval:20];
+    SecondViewController *sec = [[SecondViewController alloc]init];
+    sec.title = @"娱乐";
+    
+    ThirdViewController *third = [[ThirdViewController alloc]init];
+    third.title =@"军事";
+    
+    FourthViewController *four = [[FourthViewController alloc]init];
+    four.title = @"科技";
+    
+    FifthViewController * fifth = [[FifthViewController alloc]init];
+    fifth.title = @"体育";
+    
+    SixthViewController *six = [[SixthViewController alloc]init];
+    six.title = @"财经";
+    
+    SevenViewController *seve = [[SevenViewController alloc]init];
+    seve.title = @"头条";
+    
+    NSArray *array = @[first,sec,third,four,fifth,six,seve];
+    
+    TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, MAINWIDTH, MAINHEIGHT-20) WithViewControllers:array WithStyle:TitleMenuStyleScreen WithTitleFont:15 AndTitleInterval:25];
+    
+    titleMenu.appearMethodExists = YES;
     
     titleMenu.btnSelectedColor = [UIColor darkGrayColor];
 
@@ -52,8 +66,6 @@
     
 //    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
 
-
-    
     // Do any additional setup after loading the view, typically from a nib.
 }
 

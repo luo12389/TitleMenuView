@@ -10,6 +10,7 @@
 
 @implementation TitleMenuView
 
+#pragma mark 初始化
 - (instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array WithStyle:(TitleMenuScrollViewStyle)titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space
 {
     if (self = [super initWithFrame:frame])
@@ -20,7 +21,7 @@
         
         titleFont = font;
         
-        self.viewStyle = titleMenuStyle;
+        typeStyle = titleMenuStyle;
         
         self.btnNormalColor = [UIColor lightGrayColor];
         
@@ -36,15 +37,16 @@
     return  self;
 }
 
+#pragma mark 创建按钮菜单
 -  (void)creatTitleMenuScrollView
 {
-    mainScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, MAINWIDTH, 30)];
+    btnScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, MAINWIDTH, 30)];
     
-    mainScrollView.showsVerticalScrollIndicator = NO;
+    btnScrollView.showsVerticalScrollIndicator = NO;
     
-    mainScrollView.showsHorizontalScrollIndicator = NO;
+    btnScrollView.showsHorizontalScrollIndicator = NO;
     
-    [self addSubview:mainScrollView];
+    [self addSubview:btnScrollView];
     
     CGFloat contentSizeX = 0;
     
@@ -58,13 +60,9 @@
         
         btn.tag = i;
         
-        NSDictionary *dic = vcsArray[i];
+        btnWidth = titleFont*2+btnSpace/2;
         
-        NSString *title = [dic allKeys][0];
-        
-        btnWidth = titleFont*title.length+btnSpace/2;
-        
-        if(self.viewStyle == TitleMenuStyleScreen)
+        if(typeStyle == TitleMenuStyleScreen)
         {
             btnWidth = MAINWIDTH/vcsArray.count;
             
@@ -85,7 +83,6 @@
                 btn.frame = CGRectMake(button.frame.origin.x+button.frame.size.width+btnSpace, 5, btnWidth, 20);
             }
         }
-        [btn  setTitle:title forState:UIControlStateNormal];
         
         [btn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -95,19 +92,19 @@
             
             btn.titleLabel.font = [UIFont systemFontOfSize:15.5];
             
-            if (self.viewStyle == TitleMenuStyleLine || self.viewStyle == TitleMenuStyleScreen)
+            if (typeStyle == TitleMenuStyleLine || typeStyle == TitleMenuStyleScreen)
             {
                 btnSliderView = [[UIView alloc]initWithFrame:CGRectMake(btn.frame.origin.x, 28, btn.frame.size.width, 2)];
                 
-                [mainScrollView addSubview:btnSliderView];
+                [btnScrollView addSubview:btnSliderView];
                 
                 btnSliderView.backgroundColor = self.sliderColor;
             }
-            else if (self.viewStyle == TitleMenuStylePlayGround)
+            else if (typeStyle == TitleMenuStylePlayGround)
             {
                 btnSliderView = [[UIView alloc]initWithFrame:btn.frame];
                 
-                [mainScrollView addSubview:btnSliderView];
+                [btnScrollView addSubview:btnSliderView];
                 
                 btnSliderView.layer.cornerRadius = 10;
                 
@@ -123,31 +120,49 @@
         
         [buttonsArray addObject:btn];
         
-        [mainScrollView addSubview:btn];
+        [btnScrollView addSubview:btn];
     }
     
-    mainScrollView.contentSize = CGSizeMake(contentSizeX+vcsArray.count*btnSpace, 0);
+    btnScrollView.contentSize = CGSizeMake(contentSizeX+vcsArray.count*btnSpace, 0);
 }
 
+#pragma mark 创建控制器sc
 - (void)creatVCScrollView
 {
-    vcScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, mainScrollView.frame.origin.y+mainScrollView.frame.size.height, MAINWIDTH, MAINHEIGHT-94)];
+    vcScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, btnScrollView.frame.origin.y+btnScrollView.frame.size.height, MAINWIDTH, MAINHEIGHT-94)];
     
     [self addSubview:vcScrollView];
+    
+    loadVcArray = [NSMutableArray array];
     
     vcScrollView.delegate = self;
     
     for (int i = 0;  i < vcsArray.count; i++)
     {
-        NSDictionary *dic = vcsArray[i];
-        
-        UIViewController *vc = [dic valueForKey:[dic allKeys][0]];
+        UIViewController *vc = vcsArray[i];
         
         vc.view.frame = CGRectMake(i*MAINWIDTH, 0, MAINWIDTH, vcScrollView.frame.size.height);
         
         vc.view.backgroundColor = [UIColor grayColor];
         
         [vcScrollView addSubview:vc.view];
+        
+        UIButton * btn = buttonsArray[i];
+        
+        NSLog(@"%@",vc.title);
+        
+        if (i == 0)
+        {
+            [btn setTitle:vc.title forState:UIControlStateNormal];
+            
+            [vc viewDidAppear:YES];
+        }
+        else
+        {
+            [btn setTitle:vc.title forState:UIControlStateNormal];
+        }
+        
+        [loadVcArray addObject:vc];
     }
     
     vcScrollView.contentSize = CGSizeMake(MAINWIDTH*vcsArray.count, 0);
@@ -161,6 +176,7 @@
     vcScrollView.showsHorizontalScrollIndicator = NO;
 }
 
+#pragma mark 开始滚动的时候
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     float num = vcScrollView.contentOffset.x/MAINWIDTH;
@@ -169,7 +185,7 @@
     
     frame.origin.x =btnSpace*(num+0.5)+btnWidth*num;
     
-    if(self.viewStyle == TitleMenuStyleScreen)
+    if(typeStyle == TitleMenuStyleScreen)
     {
         frame.origin.x = num*btnWidth;
     }
@@ -177,6 +193,7 @@
     btnSliderView.frame = frame;
 }
 
+#pragma mark 滚动结束后
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSInteger pageNum = vcScrollView.contentOffset.x/MAINWIDTH;
@@ -193,35 +210,39 @@
             [btn setTitleColor:self.btnNormalColor forState:UIControlStateNormal];
         }
     }
+    [self offset:pageNum];
     
-    if(self.viewStyle != TitleMenuStyleScreen)
-    {
-        [self offset:pageNum];
-    }
+    UIViewController * vc = loadVcArray[pageNum];
+    
+    [vc viewDidAppear:YES];
 }
 
+#pragma mark 偏移量调整
 - (void)offset:(NSInteger)page;
 {
-    UIButton *btn = buttonsArray[page];
-
-    CGFloat offset = btn.center.x - MAINWIDTH*0.5;
-
-    if (offset < 0)
+    if(typeStyle != TitleMenuStyleScreen)
     {
-        offset = 0;
+        UIButton *btn = buttonsArray[page];
+        
+        CGFloat offset = btn.center.x - MAINWIDTH*0.5;
+        
+        if (offset < 0)
+        {
+            offset = 0;
+        }
+        
+        CGFloat maxOffset = btnScrollView.contentSize.width - MAINWIDTH;
+        
+        if (offset > maxOffset)
+        {
+            offset = maxOffset;
+        }
+        
+        [btnScrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
     }
-
-    CGFloat maxOffset = mainScrollView.contentSize.width - MAINWIDTH;
-
-    if (offset > maxOffset)
-    {
-        offset = maxOffset;
-    }
-
-    [mainScrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
 }
 
-
+#pragma mark 按钮点击事件
 - (void)buttonClick:(id)sender
 {
     UIButton *btnSender = sender;
@@ -240,14 +261,16 @@
     
     [vcScrollView setContentOffset:CGPointMake(MAINWIDTH*btnSender.tag, 0) animated:YES];
     
-    //    [self offset:btnSender.tag];
+    [self offset:btnSender.tag];
 }
 
+
+#pragma mark - 属性设置
 - (void)setTitleMenuBackGroundColor:(UIColor *)titleMenuBackGroundColor
 {
     _titleMenuBackGroundColor = titleMenuBackGroundColor;
     
-    mainScrollView.backgroundColor = _titleMenuBackGroundColor;
+    btnScrollView.backgroundColor = _titleMenuBackGroundColor;
 }
 
 

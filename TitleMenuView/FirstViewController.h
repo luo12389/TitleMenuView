@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface FirstViewController : UIViewController
+{
+    int state;
+}
 
 @end

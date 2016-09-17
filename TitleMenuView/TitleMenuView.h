@@ -11,28 +11,27 @@
 #define MAINWIDTH    [UIScreen mainScreen].bounds.size.width
 #define MAINHEIGHT   [UIScreen mainScreen].bounds.size.height
 @interface TitleMenuView : UIView<UIScrollViewDelegate>
-
 {
-    UIScrollView *mainScrollView;
+    UIScrollView *btnScrollView;
     UIScrollView *vcScrollView;
     UIView *btnSliderView;
     NSMutableArray *buttonsArray;
+    NSMutableArray *loadVcArray;
     NSArray *vcsArray;
     CGFloat btnWidth;
     CGFloat btnSpace;
     CGFloat titleFont;
+    NSInteger typeStyle;
 }
 
 typedef NS_ENUM(NSInteger, TitleMenuScrollViewStyle)
 {
-    TitleMenuStyleDefault,
-    TitleMenuStylePlayGround,
-    TitleMenuStyleLine,
-    TitleMenuStyleScreen,
+    TitleMenuStyleDefault = 0,
+    TitleMenuStylePlayGround = 1,
+    TitleMenuStyleLine = 2,
+    TitleMenuStyleScreen = 3,
 };
 
-//样式
-@property (nonatomic, assign) TitleMenuScrollViewStyle viewStyle;
 //按钮字体的默认颜色
 @property (nonatomic, strong) UIColor *btnNormalColor;
 //按钮选中时字体的颜色
@@ -41,6 +40,8 @@ typedef NS_ENUM(NSInteger, TitleMenuScrollViewStyle)
 @property (nonatomic, strong) UIColor *titleMenuBackGroundColor;
 //滚动条的颜色
 @property (nonatomic, strong) UIColor *sliderColor;
+//是否有appear的相关方法
+@property (nonatomic, assign) BOOL appearMethodExists;
 
 - (instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array WithStyle:(TitleMenuScrollViewStyle)titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 
