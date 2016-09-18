@@ -50,7 +50,7 @@
     
     NSArray *array = @[first,sec,third,four,fifth,six,seve];
     
-    TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, MAINWIDTH, MAINHEIGHT-20) WithViewControllers:array WithStyle:TitleMenuStylePlayGround WithTitleFont:15 AndTitleInterval:25];
+    TitleMenuView *titleMenu = [[TitleMenuView alloc]initWithFrame:CGRectMake(0, 64, MAINWIDTH, MAINHEIGHT-20) WithViewControllers:array WithStyle:TitleMenuStyleDefault WithTitleFont:15 AndTitleInterval:25];
     
     titleMenu.appearMethodExists = YES;
     
