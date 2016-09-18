@@ -11,7 +11,7 @@ WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font 
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/default.gif)
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/line.gif)
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/playground.gif)
-![](https://github.com/luo12389/TitleMenuView/blob/master/gif/screen.gif)
+![](https://github.com/luo12389/TitleMenuView/blob/master/gif/Screen.gif)
 
 ####可设置的属性
 ```
