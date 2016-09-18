@@ -32,6 +32,8 @@
         [self creatTitleMenuScrollView];
         
         [self creatVCScrollView];
+        
+        self.appearMethodExists = NO;
     }
     
     return  self;
@@ -149,13 +151,11 @@
         
         UIButton * btn = buttonsArray[i];
         
-        NSLog(@"%@",vc.title);
+//        NSLog(@"%@",vc.title);
         
         if (i == 0)
         {
             [btn setTitle:vc.title forState:UIControlStateNormal];
-            
-            [vc viewDidAppear:YES];
         }
         else
         {
@@ -212,9 +212,12 @@
     }
     [self offset:pageNum];
     
-    UIViewController * vc = loadVcArray[pageNum];
-    
-    [vc viewDidAppear:YES];
+    if (self.appearMethodExists == YES)
+    {
+        UIViewController * vc = loadVcArray[pageNum];
+        
+        [vc viewDidAppear:YES];
+    }
 }
 
 #pragma mark 偏移量调整
@@ -305,6 +308,15 @@
     _sliderColor = sliderColor;
     
     btnSliderView.backgroundColor = _sliderColor;
+}
+
+- (void)setAppearMethodExists:(BOOL)appearMethodExists
+{
+    _appearMethodExists = appearMethodExists;
+    
+    UIViewController *vc = loadVcArray[0];
+    
+    [vc viewDidAppear:YES];
 }
 
 /*

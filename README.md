@@ -8,10 +8,15 @@
 WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 ```
 ####风格样式
+TitleMenuStyleDefault
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/default.gif)
+TitleMenuStyleLine
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/line.gif)
+TitleMenuStylePlayGround
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/playground.gif)
+TitleMenuStyleScreen
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/screen.gif)
+
 ####可设置的属性
 ```
 //按钮字体的默认颜色
@@ -22,6 +27,8 @@ WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font 
 @property (nonatomic, strong) UIColor *titleMenuBackGroundColor;
 //滚动条的颜色
 @property (nonatomic, strong) UIColor *sliderColor;
+//是否有appear的相关方法
+@property (nonatomic, assign) BOOL appearMethodExists;
 ```
 
 ####初始化化格式
@@ -63,7 +70,7 @@ titleMenu.sliderColor = [UIColor orangeColor];
 ```
 提示:如果有navigationcontroller,要加上self.automaticallyAdjustsScrollViewInsets = NO(去掉头部留白);
 
-####关于调用不了如下方法的问题
+####关于写了appear方法却没有进appear方法的问题
 - (void)viewWillAppear:(BOOL)animated;  
 - (void)viewDidAppear:(BOOL)animated;     
 - (void)viewWillDisappear:(BOOL)animated; 
@@ -71,7 +78,7 @@ titleMenu.sliderColor = [UIColor orangeColor];
 
 原因请看这个:
 解决办法:作者在初始化第一个页面的时候,就手动调用第一个页面的viewappear,当滚动页面结束后,会根据当前页面的下标获取到该页面,然后进行手动调用
-作者只写了viewappear的调用,如有需要用到其他3个方法,请在.m文件的158行和217自行修改
+作者只写了viewappear的调用,如有需要用到其他3个方法,请在.m文件的219行和319行自行修改
 
 
 
