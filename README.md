@@ -64,17 +64,17 @@ titleMenu.sliderColor = [UIColor orangeColor];
 [self.view addSubview:titleMenu];
 
 ```
-提示:如果有navigationcontroller,要加上self.automaticallyAdjustsScrollViewInsets = NO(去掉头部留白);
 
 ####关于写了appear方法却没有进appear方法的问题
 - (void)viewWillAppear:(BOOL)animated;  
 - (void)viewDidAppear:(BOOL)animated;     
 - (void)viewWillDisappear:(BOOL)animated; 
 - (void)viewDidDisappear:(BOOL)animated;
-
 原因请看这个:[关于viewappear不被调用的疑问](http://blog.chinaunix.net/uid-25458681-id-3287785.html)</br>
 解决办法:作者在初始化第一个页面的时候,就手动调用第一个页面的viewappear(前提appearMethodExists = YES),当滚动页面结束后,会根据当前页面的下标获取到该页面,然后进行手动调用(作者只写了viewappear的调用,如有需要用到其他3个方法,请在.m文件的219行和319行自行修改)</br>
-提示:1.如果需要在初始化页面的时候进行网络请求,最好写在viewDidAppear方法里面,因为在初始化titleMenu的时候会逐个初始化多个页面,如果把网络请求写在viewDidLoad里面,会同时进行多个网络请求,会造成卡顿(尤其是网络请求返回的数据中有大量图片)</br>
-    2.如果UITableBarController,只有修改vcScrollView的高度就好了(初始化控制器的view的高度是根据scrollView的高度设定的)</br>
-    3.如果有navigationcontroller,要加上self.automaticallyAdjustsScrollViewInsets = NO(去掉头部留白)</br>
+
+#####提示
+1.如果需要在初始化页面的时候进行网络请求,最好写在viewDidAppear方法里面,因为在初始化titleMenu的时候会逐个初始化多个页面,如果把网络请求写在viewDidLoad里面,会同时进行多个网络请求,会造成卡顿(尤其是网络请求返回的数据中有大量图片)</br>
+2.如果UITableBarController,只有修改vcScrollView的高度就好了(初始化控制器的view的高度是根据scrollView的高度设定的)</br>
+3.如果有navigationcontroller,要加上self.automaticallyAdjustsScrollViewInsets = NO(去掉头部留白)</br>
 如果有任何问题或者好的建议,欢迎联系：Email:<1224631767@qq.com>,qq:1224631767
