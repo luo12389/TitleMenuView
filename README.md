@@ -72,8 +72,8 @@ titleMenu.sliderColor = [UIColor orangeColor];
 - (void)viewWillDisappear:(BOOL)animated; 
 - (void)viewDidDisappear:(BOOL)animated;
 
-原因请看这个:(http://blog.chinaunix.net/uid-25458681-id-3287785.html)
-解决办法:作者在初始化第一个页面的时候,就手动调用第一个页面的viewappear,当滚动页面结束后,会根据当前页面的下标获取到该页面,然后进行手动调用
+原因请看这个:[关于viewappear不被调用的疑问](http://blog.chinaunix.net/uid-25458681-id-3287785.html)
+解决办法:作者在初始化第一个页面的时候,就手动调用第一个页面的viewappear(前提appearMethodExists = YES),当滚动页面结束后,会根据当前页面的下标获取到该页面,然后进行手动调用
 作者只写了viewappear的调用,如有需要用到其他3个方法,请在.m文件的219行和319行自行修改
 
 
