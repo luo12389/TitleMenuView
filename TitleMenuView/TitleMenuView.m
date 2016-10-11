@@ -151,8 +151,6 @@
         
         UIButton * btn = buttonsArray[i];
         
-//        NSLog(@"%@",vc.title);
-        
         if (i == 0)
         {
             [btn setTitle:vc.title forState:UIControlStateNormal];
@@ -314,9 +312,12 @@
 {
     _appearMethodExists = appearMethodExists;
     
-    UIViewController *vc = loadVcArray[0];
-    
-    [vc viewDidAppear:YES];
+    if(_appearMethodExists == YES)
+    {
+        UIViewController *vc = loadVcArray[0];
+        
+        [vc viewDidAppear:YES];
+    }
 }
 
 /*
