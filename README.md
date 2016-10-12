@@ -1,13 +1,16 @@
 TitleMenuView
 ===
 - 简单易懂的菜单滚动条。
+
 ### 使用方法
   把压缩文件中的TitleMenuView.h和TitleMenuView.m两个文件放入项目文件夹,引入头文件后使用
+  
 ### 初始化方法
 ```
 -(instancetype)initWithFrame:(CGRect)frame WithViewControllers:(NSArray *)array 
 WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font AndTitleInterval:(CGFloat)space;
 ```
+
 ### 风格样式
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/default.gif)
 ![](https://github.com/luo12389/TitleMenuView/blob/master/gif/line.gif)
