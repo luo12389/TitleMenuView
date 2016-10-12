@@ -1,6 +1,6 @@
 TitleMenuView
 ===
-- 简单易懂的菜单滚动条。
+- 简单易懂的菜单滚动条,适合初学者使用。
 
 ### 使用方法
   把压缩文件中的TitleMenuView.h和TitleMenuView.m两个文件放入项目文件夹,引入头文件后使用
@@ -31,7 +31,7 @@ WithStyle:(TitleMenuScrollViewStyle) titleMenuStyle WithTitleFont:(CGFloat)font 
 @property (nonatomic, assign) BOOL appearMethodExists;
 ```
 
-### 初始化格式
+### 示例
 ```
 为了方便写代理,建议这样初始化控制器和数组
 FirstViewController *first = [[FirstViewController alloc]init];
