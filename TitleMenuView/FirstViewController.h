@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @interface FirstViewController : UIViewController
-{
-    int state;
-}
+
+@property (nonatomic, assign) BOOL loadState;
 
 @end

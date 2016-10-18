@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    state = 0;
+    self.loadState = YES;
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
@@ -32,11 +32,11 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (state == 0)
+    if (self.loadState == YES)
     {
         NSLog(@"First");
         
-        state = 1;
+        self.loadState = NO;
     }
 }
 
