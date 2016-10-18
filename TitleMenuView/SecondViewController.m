@@ -16,8 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    state = 0;
+
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
@@ -29,15 +28,7 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    if (state == 0)
-    {
-        NSLog(@"se");
-        
-        state = 1;
-    }
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

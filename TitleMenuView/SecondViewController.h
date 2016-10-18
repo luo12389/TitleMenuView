@@ -9,8 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SecondViewController : UIViewController
-{
-    int state;
-}
 
 @end
