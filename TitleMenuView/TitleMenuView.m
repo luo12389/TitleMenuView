@@ -210,7 +210,7 @@
     }
     [self offset:pageNum];
     
-    if (self.appearMethodExists == YES)
+    if (self.appearMethodExists)
     {
         UIViewController * vc = loadVcArray[pageNum];
         
@@ -312,7 +312,7 @@
 {
     _appearMethodExists = appearMethodExists;
     
-    if(_appearMethodExists == YES)
+    if(_appearMethodExists)
     {
         UIViewController *vc = loadVcArray[0];
         
